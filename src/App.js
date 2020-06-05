@@ -7,6 +7,14 @@ function App() {
 
   const responseGoogle = (response) => {
     console.log(response);
+    var id_token = response.tokenObj.id_token;
+    fetch('http://localhost:4000/api/auth/google/redirect', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 'idtoken' : id_token }),
+    })
   }
 
   return (
